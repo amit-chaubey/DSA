@@ -1,7 +1,7 @@
 class Node:
     def __init__(self,data,next=None):
         self.data = data
-        self.next = None
+        self.next = next
 
 class SingleLinkedList:
     def __init__(self):
@@ -35,13 +35,26 @@ class SingleLinkedList:
             print(current.data,end="->")
             current = current.next
         print("None")
+
+    def delete_at_position(self,position):
+        if position == 0:
+            self.head = self.head.next
+        else:
+            current = self.head
+            for i in range(position-1):
+                current = current.next
+            current.next = current.next.next
+
     
 if __name__=="__main__":
     ll = SingleLinkedList()
     ll.append(1)
     ll.append(2)
     ll.append(3)
+    ll.delete_at_position(2)
     ll.insert_at_position(4,2)
+
     print(ll.head.data)
 
+   
     ll.print_ll()
