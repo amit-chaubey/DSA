@@ -32,6 +32,7 @@ class Graph:
             print(f"{node}--->{self.graph[node]}")
 
 
+
 if __name__=="__main__":
     graph = Graph()
     graph.add_edge("A", "B")
