@@ -30,6 +30,8 @@ class Graph:
     def print_graph(self):
         for node in self.graph:
             print(f"{node}--->{self.graph[node]}")
+        
+
 
 
 
