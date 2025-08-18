@@ -79,7 +79,35 @@ class SinglyLinkedList:
         self.tail = temp                  
         return item
 
-            
+    
+    def delete_item(self, data):
+        """Delete the first node whose item == data. Returns the deleted item."""
+        if self.is_empty():
+            raise ValueError("List is empty")
+
+        # Case 1: head matches
+        if self.start.item == data:
+            deleted = self.start
+            self.start = self.start.next
+            if self.start is None:        
+                self.tail = None
+            return deleted.item
+
+        # Case 2: find the node BEFORE the one to delete
+        prev = self.start
+        curr = self.start.next
+        while curr is not None and curr.item != data:
+            prev, curr = curr, curr.next
+
+        if curr is None:
+            raise ValueError("Item not found in the list")
+
+        # curr is the node to delete
+        prev.next = curr.next
+        if prev.next is None:             
+            self.tail = prev
+        return curr.item
+
 
 
 mylist = SinglyLinkedList()
@@ -89,7 +117,7 @@ mylist.insert_at_last(30)
 mylist.insert_at_last(40)
 mylist.insert_after(mylist.search(20), 25)
 mylist.delete_last()
-mylist.delete_first()
+mylist.delete_item(25)
 
 print("List after inserting elements:")
 mylist.print_list()
